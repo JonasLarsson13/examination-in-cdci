@@ -1,7 +1,8 @@
-import { beforeEach, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { beforeEach, expect } from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
+
 import { getAllInputs } from "../components/BookingInfo/BookingInfo.test";
 import Booking from "./Booking";
 import Confirmation from "./Confirmation";
@@ -46,7 +47,7 @@ describe("Booking", () => {
     expect(bookButton).toBeInTheDocument();
   });
 
-  it("should show error message when not all fields have been filled out", async () => {
+  it("should show error message when fields are empty", async () => {
     const bookButton = screen.getByRole("button", { name: "strIIIIIike!" });
     await userEvent.click(bookButton);
 
@@ -61,8 +62,8 @@ describe("Booking", () => {
     const { date, time, people, lanes } = getAllInputs();
     const bookButton = screen.getByRole("button", { name: "strIIIIIike!" });
 
-    await userEvent.type(date, "2021-10-10");
-    await userEvent.type(time, "12:00");
+    await userEvent.type(date, "2025-11-01");
+    await userEvent.type(time, "14:30");
     await userEvent.type(people, "2");
     await userEvent.type(lanes, "1");
     await userEvent.click(bookButton);
@@ -74,7 +75,7 @@ describe("Booking", () => {
     ).toBeInTheDocument();
   });
 
-  it("should navigate to confirmation page, generate a unique booking number, and a total price when all fields are populated correctly and booking button is clicked", async () => {
+  it("should navigate to confirmation page, generate unique booking number and a total price when the form is filled out correctly and the booking button is clicked", async () => {
     await fillBookingForm();
 
     const bookingNumberLabel = screen.getByText("Booking number");
