@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 
 const handlers = [
-  http.post("https://h5jbtjv6if.execute-api.eu-north-1.amazonaws.com", () => {
+  http.post("https://w9w9d9wf.execute-api.eu-north-1.amazonaws.com", () => {
     return HttpResponse.json({
       active: true,
       id: "STR4897YTH1337",
